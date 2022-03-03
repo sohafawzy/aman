@@ -4,4 +4,6 @@ class UrlHelper{
   static const String login = baseUrl+"auth/signin";
   static const String checkBranchUrl = baseUrl + "branch/branchstat?id=";
   static const String branchesUrl = baseUrl+"branch/branchlist";
+  static const String branchFilesUrl = baseUrl+"branch/branchFiles";
+
 }

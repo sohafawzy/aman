@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/app_button.dart';
-import '../../utils/global.dart';
 
 class MainScreen extends StatefulWidget {
   @override

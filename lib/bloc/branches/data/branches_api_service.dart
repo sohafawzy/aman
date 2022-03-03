@@ -46,4 +46,21 @@ class BranchesApiService {
       return Result.error(e.toString());
     }
   }
+
+  Future<Result<Branches>> getBranchDetails(int id) async {
+    try {
+      final response = await WebService.get().dioGet(UrlHelper.branchesUrl+"/${id}");
+      if (response?.statusCode == 200) {
+        Result<Branches> res =
+        Result.success(Branches(List<BranchesResponse>.from(response.data.map((x) => BranchesResponse.fromJson(x)))));
+        return res;
+      } else {
+        return Result.error(ErrorResponse.fromJson(response.data).message);
+      }
+    } on SocketException catch (e) {
+      return Result.error("No Internet Connection");
+    } catch (e) {
+      return Result.error(e.toString());
+    }
+  }
 }

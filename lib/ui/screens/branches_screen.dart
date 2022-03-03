@@ -94,7 +94,10 @@ class _BranchesScreenState extends State<BranchesScreen> {
                     return Container();
                   }
                 } else {
-                  return AppLoader(color: AppColors.primary);
+                  return Container(
+                    height: 500,
+                    child: Center(child:AppLoader(color: AppColors.primary)),
+                  );
                 }
               },
             ),
