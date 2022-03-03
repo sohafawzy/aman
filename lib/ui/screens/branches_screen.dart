@@ -67,11 +67,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
                         child: ListView.builder(
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
-                          padding: const EdgeInsets.only(
-                              top: 18,
-                              bottom: 18,
-                              right: 4,
-                              left: 4),
+                          padding: const EdgeInsets.all(4),
                           itemCount: branchesList.length,
                           itemBuilder: (context, index) {
                             var item = branchesList[index];

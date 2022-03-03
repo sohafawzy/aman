@@ -1,6 +1,7 @@
 import 'package:aman/bloc/branches/data/branches_bloc.dart';
 import 'package:aman/bloc/branches/model/Branches.dart';
 import 'package:aman/bloc/branches/model/BranchesResponse.dart';
+import 'package:aman/ui/screens/branch_details_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -32,12 +33,12 @@ class _BranchItemState extends State<BranchItem> {
           child: AppButton(
             text: branchesResponse.branchname,
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //       builder: (context) => BranchesScreen()
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => BranchDetailsScreen(branchesResponse)
+                ),
+              );
             },
           ),
         ),

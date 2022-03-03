@@ -68,7 +68,7 @@ class AppButton extends StatelessWidget {
       color: bgColor,
       onPressed: enabled ? onPressed : null,
       resetAfterDuration: true,
-      resetDuration: const Duration(seconds: 2),
+      resetDuration: const Duration(seconds: 60),
     );
   }
 

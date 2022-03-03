@@ -46,7 +46,10 @@ dependencies:
   rounded_loading_button: ^2.0.9
   qr_code_scanner: ^0.7.0
   rxdart: ^0.26.0
-
+  cached_network_image: ^3.1.0
+  image_picker: ^0.8.3+3
+  get: ^4.3.8
+  flutter_svg: ^1.0.3
 
 
 dev_dependencies:

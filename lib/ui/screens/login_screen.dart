@@ -154,9 +154,11 @@ class _LoginFrom extends State<LoginForm> {
 
   void login (String username, String pass)async{
     var result = await authBloc.login(username, pass);
+    _actionBtnController.stop();
     if(result.getSuccessData() != null){
       PreferenceUtils.setString("apiKey", result.getSuccessData().tokenType+" "+result.getSuccessData().accessToken);
       PreferenceUtils.setBoolean("isManager", result.getSuccessData().ismanager);
+      Navigator.pop(context);
       Navigator.push(
         context,
         MaterialPageRoute(

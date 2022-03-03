@@ -5,5 +5,7 @@ class UrlHelper{
   static const String checkBranchUrl = baseUrl + "branch/branchstat?id=";
   static const String branchesUrl = baseUrl+"branch/branchlist";
   static const String branchFilesUrl = baseUrl+"branch/branchFiles";
+  static const String uploadFile = "branch/uploadmultiples";
+
 
 }

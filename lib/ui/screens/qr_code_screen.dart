@@ -22,7 +22,6 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
   Barcode result;
   QRViewController controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  final BranchesBloc _branchesBloc = BranchesBloc();
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -73,17 +72,12 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
     });
     controller.scannedDataStream.listen((scanData) async {
         result = scanData;
-        var checkBranch = await _branchesBloc.checkBranch(result.code);
-        if(checkBranch.getSuccessData() != null){
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => UploadPhotosScreen()
-            ),
-          );
-        }else if(checkBranch.getErrorMessage()!= null){
-          showSnackbar(context, checkBranch.getErrorMessage());
-        }
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => UploadPhotosScreen(result.code)
+          ),
+        );
     });
   }
 

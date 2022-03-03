@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="47.099" height="44.771" viewBox="0 0 47.099 44.771">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.816" y1="0.119" x2="0.415" y2="0.607" gradientUnits="objectBoundingBox">
+      <stop offset="0"/>
+      <stop offset="1" stop-opacity="0.361"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_1018" data-name="Group 1018" transform="translate(-2908.901 -1086)">
+    <g id="Group_1017" data-name="Group 1017" transform="translate(2830 940)">
+      <path id="Path_23964" data-name="Path 23964" d="M-3.1,0H36a8,8,0,0,1,8,8V44.771S17.628,20.727-3.1,0Z" transform="translate(82 146)" fill="url(#linear-gradient)"/>
+      <path id="Icon_ionic-md-close" data-name="Icon ionic-md-close" d="M18,8.571,16.952,7.523l-4.191,4.191L8.571,7.523,7.523,8.571l4.191,4.191L7.523,16.952,8.571,18l4.191-4.191L16.952,18,18,16.952l-4.191-4.191Z" transform="translate(99.472 146.5)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

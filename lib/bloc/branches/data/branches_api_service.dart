@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:aman/bloc/auth/model/AuthResponse.dart';
 import 'package:aman/bloc/auth/model/ErrorResponse.dart';
+import 'package:aman/bloc/branches/model/BranchFile.dart';
+import 'package:aman/bloc/branches/model/BranchFiles.dart';
 import 'package:aman/bloc/branches/model/Branches.dart';
 import 'package:aman/bloc/branches/model/BranchesResponse.dart';
 
@@ -47,12 +49,12 @@ class BranchesApiService {
     }
   }
 
-  Future<Result<Branches>> getBranchDetails(int id) async {
+  Future<Result<BranchFiles>> getBranchDetails(String id) async {
     try {
-      final response = await WebService.get().dioGet(UrlHelper.branchesUrl+"/${id}");
+      final response = await WebService.get().dioGet(UrlHelper.branchFilesUrl,params: {"branchId": id});
       if (response?.statusCode == 200) {
-        Result<Branches> res =
-        Result.success(Branches(List<BranchesResponse>.from(response.data.map((x) => BranchesResponse.fromJson(x)))));
+        Result<BranchFiles> res =
+        Result.success(BranchFiles(List<BranchFile>.from(response.data.map((x) => BranchFile.fromJson(x)))));
         return res;
       } else {
         return Result.error(ErrorResponse.fromJson(response.data).message);

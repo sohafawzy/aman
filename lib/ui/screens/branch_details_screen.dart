@@ -1,5 +1,7 @@
 import 'package:aman/bloc/branches/data/branches_bloc.dart';
+import 'package:aman/bloc/branches/model/BranchFile.dart';
 import 'package:aman/bloc/branches/model/BranchesResponse.dart';
+import 'package:aman/ui/screens/branch_image_item.dart';
 import 'package:aman/ui/screens/branch_item.dart';
 import 'package:aman/ui/screens/login_screen.dart';
 import 'package:aman/ui/screens/qr_code_screen.dart';
@@ -13,28 +15,32 @@ import '../../utils/result.dart';
 import '../widgets/AppLoader.dart';
 
 class BranchDetailsScreen extends StatefulWidget {
+  BranchesResponse branch;
+
+  BranchDetailsScreen(this.branch, {Key key}) : super(key: key);
   @override
-  _BranchDetailsScreenState createState() => _BranchDetailsScreenState();
+  _BranchDetailsScreenState createState() => _BranchDetailsScreenState(branch);
 }
 
 class _BranchDetailsScreenState extends State<BranchDetailsScreen> {
   bool isLoading = false;
   BranchesBloc _bloc = BranchesBloc();
 
+  BranchesResponse branch;
 
-  _BranchDetailsScreenState();
+  _BranchDetailsScreenState(this.branch);
 
   @override
   void initState() {
     super.initState();
-    _bloc.getBranches();
+    _bloc.getBranchFiles(branch.id);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(title: const Text("Branch Details"),backgroundColor: AppColors.primary,),
+        appBar: AppBar(title: Text(branch.branchname),backgroundColor: AppColors.primary,),
         body: Container(
           color: Colors.white,
           child: isLoading
@@ -49,41 +55,36 @@ class _BranchDetailsScreenState extends State<BranchDetailsScreen> {
             children: [
               Container(
                 child: StreamBuilder(
-                  stream: _bloc.branchesList,
+                  stream: _bloc.branchFilesList,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       if (snapshot.data is SuccessResult) {
-                        List<BranchesResponse> branchesList =
+                        List<BranchFile> branchFiles =
                         snapshot.data.getSuccessData().toList();
-                        return branchesList.length < 1
+                        return branchFiles.length < 1
                             ? Container(
                             child: const Padding(
                                 padding: EdgeInsets.only(top: 50),
                                 child: Center(
-                                    child: Text(
-                                      "No Branches",
+                                    child: Text(""
                                     ))))
                             : Expanded(
-                            child: ListView.builder(
+                            child:  GridView(
+                             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                               mainAxisSpacing: 3,
+                               crossAxisSpacing: 3
+                        ),
                               shrinkWrap: true,
                               scrollDirection: Axis.vertical,
-                              padding: const EdgeInsets.only(
-                                  top: 18,
-                                  bottom: 18,
-                                  right: 4,
-                                  left: 4),
-                              itemCount: branchesList.length,
-                              itemBuilder: (context, index) {
-                                var item = branchesList[index];
-                                print(item.toJson());
-                                return ListTile(
-                                  title: BranchItem(
-                                      item
-                                  ),
-                                );
-                              },
-                            ));
-                      } else if (snapshot.data is LoadingResult) {
+                              padding: const EdgeInsets.all(4),
+                              children: List<Widget>.generate(
+                                  branchFiles.length, // same length as the data
+                                      (index) => BranchImageItem(
+                                          branchFiles[index]
+                                      ),
+                            )));
+                        } else if (snapshot.data is LoadingResult) {
                         return Container(
                           height: 500,
                           child: Center(child:AppLoader(color: AppColors.primary)),
