@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Aman Agent',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Colors.white,

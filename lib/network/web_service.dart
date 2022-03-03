@@ -29,7 +29,7 @@ class WebService {
   Future<Map<String, String>> getHeaders() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return {
-      "Authorization": "Bearer ${prefs.getString(SharedPrefsKeys.USER_TOKEN)}",
+      "Authorization": prefs.getString("apiKey"),
       "Accept": "application/json"
     };
   }

@@ -1,3 +1,4 @@
+import 'package:aman/ui/screens/branches_screen.dart';
 import 'package:aman/ui/screens/login_screen.dart';
 import 'package:aman/ui/screens/qr_code_screen.dart';
 import 'package:aman/utils/preference_utils.dart';
@@ -63,7 +64,14 @@ class _MainScreen extends State<MainScreen> {
                       height: 40.0,
                       child: AppButton(
                         text: "View Branches",
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BranchesScreen()
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ):Row(),
